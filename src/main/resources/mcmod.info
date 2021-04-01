@@ -1,0 +1,16 @@
+[
+{
+  "modid": "dsf",
+  "name": "DungeonSecretFinder",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["AleWu"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

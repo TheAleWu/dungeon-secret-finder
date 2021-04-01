@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "id": "tic_tac_toe",
+      "markers": [
+        {
+          "block": "minecraft:leaves",
+          "relative": "-5.0;8.0;-3.0"
+        }
+      ]
+    }
+  ]
+}
