@@ -91,7 +91,7 @@ public class RemoteData {
         JsonParser parser = new JsonParser();
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-        File identifiersDirectory = new File("dsf/identifiers");
+        File identifiersDirectory = new File("dsf/identification");
         if (!identifiersDirectory.exists()) {
             identifiersDirectory.mkdirs();
         }

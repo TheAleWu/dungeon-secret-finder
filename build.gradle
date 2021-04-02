@@ -19,7 +19,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "beta-0.3.4"
+version = "beta-0.4.0"
 group = "de.alewu.dsf" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "dsf"
 sourceCompatibility = 1.8

@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class DungeonSecretFinder {
 
     public static final String MODID = "dsf";
-    public static final String VERSION = "beta-0.3.4";
+    public static final String VERSION = "beta-0.4.0";
     private static Timer debugTimer;
 
     @EventHandler
