@@ -1,1 +1,491 @@
-{}
+{
+  "1x1": {
+    "entries": [
+      {
+        "id": "tic-tac-toe",
+        "markers": [
+          {
+            "block": "minecraft:hopper",
+            "relative": "1.0;9.0;-8.0"
+          },
+          {
+            "block": "minecraft:hopper",
+            "relative": "-1.0;9.0;-8.0"
+          },
+          {
+            "block": "minecraft:hopper",
+            "relative": "4.0;7.0;1.0"
+          }
+        ]
+      },
+      {
+        "id": "trap-2",
+        "markers": [
+          {
+            "block": "minecraft:stone_brick_stairs",
+            "relative": "5.0;3.0;-2.0"
+          },
+          {
+            "block": "minecraft:ladder",
+            "relative": "13.0;20.0;13.0"
+          }
+        ]
+      },
+      {
+        "id": "jumping-skulls",
+        "markers": [
+          {
+            "block": "minecraft:crafting_table",
+            "relative": "8.0;2.0;12.0"
+          },
+          {
+            "block": "minecraft:hay_block",
+            "relative": "-9.0;5.0;7.0"
+          }
+        ]
+      },
+      {
+        "id": "locked-away",
+        "markers": [
+          {
+            "block": "minecraft:vine",
+            "relative": "-4.0;6.0;10.0"
+          },
+          {
+            "block": "minecraft:cobblestone_wall",
+            "relative": "1.0;12.0;-3.0"
+          }
+        ]
+      },
+      {
+        "id": "multicolored",
+        "markers": [
+          {
+            "block": "minecraft:hopper",
+            "relative": "-2.0;7.0;0.0"
+          },
+          {
+            "block": "minecraft:hopper",
+            "relative": "2.0;7.0;0.0"
+          }
+        ]
+      },
+      {
+        "id": "mural",
+        "markers": [
+          {
+            "block": "minecraft:nether_brick",
+            "relative": "-6.0;24.0;-14.0"
+          },
+          {
+            "block": "minecraft:fence",
+            "relative": "2.0;6.0;10.0"
+          }
+        ]
+      },
+      {
+        "id": "mushroom",
+        "markers": [
+          {
+            "block": "minecraft:red_mushroom",
+            "relative": "-5.0;5.0;-6.0"
+          },
+          {
+            "block": "minecraft:flower_pot",
+            "relative": "-12.0;6.0;-12.0"
+          }
+        ]
+      },
+      {
+        "id": "banners",
+        "markers": [
+          {
+            "block": "minecraft:iron_bars",
+            "relative": "2.0;10.0;-8.0"
+          },
+          {
+            "block": "minecraft:cobblestone_wall",
+            "relative": "-13.0;8.0;2.0"
+          }
+        ]
+      },
+      {
+        "id": "andesite",
+        "markers": [
+          {
+            "block": "minecraft:stone_slab",
+            "relative": "-2.0;6.0;-1.0"
+          },
+          {
+            "block": "minecraft:leaves",
+            "relative": "-5.0;10.0;-5.0"
+          },
+          {
+            "block": "minecraft:stained_hardened_clay",
+            "relative": "6.0;6.0;-9.0"
+          }
+        ]
+      },
+      {
+        "id": "big-red-flag",
+        "markers": [
+          {
+            "block": "minecraft:wool",
+            "relative": "-14.0;14.0;-4.0"
+          },
+          {
+            "block": "minecraft:furnace",
+            "relative": "10.0;10.0;14.0"
+          }
+        ]
+      },
+      {
+        "id": "painting",
+        "markers": [
+          {
+            "block": "minecraft:bedrock",
+            "relative": "-8.0;7.0;11.0"
+          },
+          {
+            "block": "minecraft:wooden_slab",
+            "relative": "3.0;6.0;7.0"
+          },
+          {
+            "block": "minecraft:spruce_stairs",
+            "relative": "8.0;6.0;-2.0"
+          }
+        ]
+      },
+      {
+        "id": "slabs",
+        "markers": [
+          {
+            "block": "minecraft:spruce_fence",
+            "relative": "13.0;5.0;13.0"
+          },
+          {
+            "block": "minecraft:torch",
+            "relative": "-14.0;11.0;-9.0"
+          }
+        ]
+      },
+      {
+        "id": "lots-of-floors",
+        "markers": [
+          {
+            "block": "minecraft:hay_block",
+            "relative": "-13.0;5.0;-9.0"
+          },
+          {
+            "block": "minecraft:fence_gate",
+            "relative": "7.0;8.0;-1.0"
+          }
+        ]
+      },
+      {
+        "id": "pedestal",
+        "markers": [
+          {
+            "block": "minecraft:spruce_fence",
+            "relative": "11.0;25.0;12.0"
+          },
+          {
+            "block": "minecraft:stone_brick_stairs",
+            "relative": "21.0;18.0;-5.0"
+          },
+          {
+            "block": "minecraft:torch",
+            "relative": "-25.0;16.0;14.0"
+          }
+        ]
+      },
+      {
+        "id": "deathmite",
+        "markers": [
+          {
+            "block": "minecraft:coal_block",
+            "relative": "-9.0;3.0;0.0"
+          },
+          {
+            "block": "minecraft:stained_hardened_clay",
+            "relative": "3.0;6.0;-21.0"
+          }
+        ]
+      },
+      {
+        "id": "mossy",
+        "markers": [
+          {
+            "block": "minecraft:spruce_stairs",
+            "relative": "35.0;15.0;13.0"
+          },
+          {
+            "block": "minecraft:piston",
+            "relative": "48.0;7.0;0.0"
+          }
+        ]
+      },
+      {
+        "id": "tomioka",
+        "markers": [
+          {
+            "block": "minecraft:bookshelf",
+            "relative": "13.0;12.0;15.0"
+          },
+          {
+            "block": "minecraft:iron_bars",
+            "relative": "7.0;12.0;0.0"
+          }
+        ]
+      },
+      {
+        "id": "beams",
+        "markers": [
+          {
+            "block": "minecraft:stone_stairs",
+            "relative": "2.0;23.0;10.0"
+          },
+          {
+            "block": "minecraft:cobblestone_wall",
+            "relative": "-2.0;12.0;-13.0"
+          }
+        ]
+      },
+      {
+        "id": "trap-1",
+        "markers": [
+          {
+            "block": "minecraft:cobblestone_wall",
+            "relative": "-4.0;2.0;-2.0"
+          },
+          {
+            "block": "minecraft:stone_stairs",
+            "relative": "12.0;2.0;-4.0"
+          },
+          {
+            "block": "minecraft:dispenser",
+            "relative": "6.0;0.0;1.0"
+          }
+        ]
+      },
+      {
+        "id": "hall",
+        "markers": [
+          {
+            "block": "minecraft:wooden_slab",
+            "relative": "-11.0;6.0;-3.0"
+          },
+          {
+            "block": "minecraft:skull",
+            "relative": "-4.0;6.0;1.0"
+          },
+          {
+            "block": "minecraft:iron_bars",
+            "relative": "7.0;6.0;-5.0"
+          }
+        ]
+      },
+      {
+        "id": "duncan",
+        "markers": [
+          {
+            "block": "minecraft:nether_brick_stairs",
+            "relative": "4.0;26.0;-9.0"
+          },
+          {
+            "block": "minecraft:wall_sign",
+            "relative": "-6.0;24.0;-7.0"
+          }
+        ]
+      }
+    ]
+  },
+  "2x1": {
+    "entries": [
+      {
+        "id": "pedestal",
+        "markers": [
+          {
+            "block": "minecraft:spruce_fence",
+            "relative": "11.0;25.0;12.0"
+          },
+          {
+            "block": "minecraft:stone_brick_stairs",
+            "relative": "21.0;18.0;-5.0"
+          },
+          {
+            "block": "minecraft:torch",
+            "relative": "-25.0;16.0;14.0"
+          }
+        ]
+      },
+      {
+        "id": "skull",
+        "markers": [
+          {
+            "block": "minecraft:sandstone_stairs",
+            "relative": "-2.0;27.0;-28.0"
+          },
+          {
+            "block": "minecraft:ladder",
+            "relative": "-4.0;17.0;-1.0"
+          }
+        ]
+      },
+      {
+        "id": "balcony",
+        "markers": [
+          {
+            "block": "minecraft:cobblestone_wall",
+            "relative": "-1.0;8.0;6.0"
+          },
+          {
+            "block": "minecraft:wool",
+            "relative": "27.0;10.0;0.0"
+          }
+        ]
+      }
+    ]
+  },
+  "2x2": {
+    "entries": [
+      {
+        "id": "museum",
+        "markers": [
+          {
+            "block": "minecraft:wool",
+            "relative": "-3.0;9.0;-14.0"
+          },
+          {
+            "block": "minecraft:wool",
+            "relative": "-7.0;25.0;20.0"
+          },
+          {
+            "block": "minecraft:skull",
+            "relative": "19.0;19.0;-19.0"
+          }
+        ]
+      },
+      {
+        "id": "test",
+        "markers": [
+          {
+            "block": "minecraft:stone_slab",
+            "relative": "-13.0;7.0;-19.0"
+          },
+          {
+            "block": "minecraft:torch",
+            "relative": "-13.0;6.0;-15.0"
+          }
+        ]
+      }
+    ]
+  },
+  "3x1": {
+    "entries": [
+      {
+        "id": "deathmite",
+        "markers": [
+          {
+            "block": "minecraft:coal_block",
+            "relative": "-9.0;3.0;0.0"
+          },
+          {
+            "block": "minecraft:stained_hardened_clay",
+            "relative": "3.0;6.0;-21.0"
+          }
+        ]
+      },
+      {
+        "id": "diagonal",
+        "markers": [
+          {
+            "block": "minecraft:bookshelf",
+            "relative": "-15.0;6.0;-28.0"
+          },
+          {
+            "block": "minecraft:hopper",
+            "relative": "-7.0;6.0;18.0"
+          }
+        ]
+      },
+      {
+        "id": "catwalk",
+        "markers": [
+          {
+            "block": "minecraft:dirt",
+            "relative": "-1.0;-13.0;-38.0"
+          },
+          {
+            "block": "minecraft:coal_ore",
+            "relative": "-8.0;-3.0;45.0"
+          }
+        ]
+      }
+    ]
+  },
+  "4x1": {
+    "entries": [
+      {
+        "id": "mossy",
+        "markers": [
+          {
+            "block": "minecraft:spruce_stairs",
+            "relative": "35.0;15.0;13.0"
+          },
+          {
+            "block": "minecraft:piston",
+            "relative": "48.0;7.0;0.0"
+          }
+        ]
+      },
+      {
+        "id": "pit",
+        "markers": [
+          {
+            "block": "minecraft:stained_hardened_clay",
+            "relative": "0.0;9.0;16.0"
+          },
+          {
+            "block": "minecraft:log",
+            "relative": "8.0;16.0;-42.0"
+          }
+        ]
+      }
+    ]
+  },
+  "l": {
+    "entries": [
+      {
+        "id": "market",
+        "markers": [
+          {
+            "block": "minecraft:stone",
+            "relative": "20.0;15.0;14.0"
+          },
+          {
+            "block": "minecraft:double_stone_slab",
+            "relative": "9.0;9.0;-11.0"
+          }
+        ]
+      },
+      {
+        "id": "melon",
+        "markers": [
+          {
+            "block": "minecraft:piston",
+            "relative": "-9.0;6.0;-27.0"
+          },
+          {
+            "block": "minecraft:vine",
+            "relative": "-1.0;19.0;-18.0"
+          },
+          {
+            "block": "minecraft:stone_brick_stairs",
+            "relative": "-20.0;5.0;-29.0"
+          }
+        ]
+      }
+    ]
+  }
+}
