@@ -2,21 +2,31 @@ package de.alewu.dsf.commands;
 
 import static de.alewu.dsf.util.Communication.chatMessage;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import de.alewu.dsf.DungeonSecretFinder;
 import de.alewu.dsf.scanning.DungeonLayout;
 import de.alewu.dsf.scanning.DungeonRoom;
 import de.alewu.dsf.scanning.DungeonScanner;
 import de.alewu.dsf.scanning.secrets.SecretType;
 import de.alewu.dsf.util.ColorMap;
-import de.alewu.dsf.util.ColorMap.ColorData;
-import de.alewu.dsf.util.DebugMarkerData;
 import de.alewu.dsf.util.RuntimeContext;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.client.Minecraft;
@@ -98,6 +108,8 @@ public class MainModCommand extends CommandBase {
                 }
                 RuntimeContext.getInstance().setCurrentDungeonLayout(null);
                 chatMessage("§aThe dungeon layout has been cleared");
+            } else if (args[0].equalsIgnoreCase("preparedata")) {
+                prepareData();
             } else if (args[0].equalsIgnoreCase("debugtimer")) {
                 DungeonSecretFinder.debug();
             } else if (args[0].equalsIgnoreCase("relative") || args[0].equalsIgnoreCase("rel")) {
@@ -195,11 +207,106 @@ public class MainModCommand extends CommandBase {
         }
     }
 
+    private void prepareData() {
+        File modDirectory = new File("dsf");
+        File outputDirectory = new File(modDirectory, "output");
+        File identifiersOutput = new File(outputDirectory, "identifiers.json");
+        File secretsOutput = new File(outputDirectory, "secrets.json");
+        File assetsVersionOutput = new File(outputDirectory, "assets_version.json");
+        if (!modDirectory.exists()) {
+            boolean created = modDirectory.mkdirs();
+            if (!created) {
+                chatMessage("§cCould not create mod directory");
+                return;
+            }
+        }
+        if (!outputDirectory.exists()) {
+            boolean created = outputDirectory.mkdirs();
+            if (!created) {
+                chatMessage("§cCould not create output directory");
+                return;
+            }
+        }
+        int version;
+        JsonParser jsonParser = new JsonParser();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/assets/dsf/assets_version.json")))) {
+            if (!identifiersOutput.exists()) {
+                boolean created = identifiersOutput.createNewFile();
+                if (!created) {
+                    chatMessage("§cCould not create identifiers output file");
+                    return;
+                }
+            }
+            if (!secretsOutput.exists()) {
+                boolean created = secretsOutput.createNewFile();
+                if (!created) {
+                    chatMessage("§cCould not create secrets output file");
+                    return;
+                }
+            }
+
+            StringBuilder builder = new StringBuilder();
+            while (reader.ready()) {
+                builder.append(reader.readLine());
+            }
+            JsonObject obj = (JsonObject) jsonParser.parse(builder.toString());
+            if (!obj.has("version")) {
+                chatMessage("§cVersion file is missing version attribute");
+                return;
+            }
+            version = obj.get("version").getAsInt();
+            if (version == -1) {
+                chatMessage("§cVersion could not get updated");
+                return;
+            }
+
+            File identifiersDirectory = new File(modDirectory, "/identification");
+            if (identifiersDirectory.exists()) {
+                JsonObject identifiersObject = new JsonObject();
+                for (File f : Objects.requireNonNull(identifiersDirectory.listFiles())) {
+                    JsonObject identifierObject = (JsonObject) jsonParser.parse(new InputStreamReader(new FileInputStream(f)));
+                    identifiersObject.add(f.getName().replaceAll("\\.json", ""), identifierObject);
+                }
+                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(identifiersOutput)))) {
+                    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+                    gson.toJson(identifiersObject, writer);
+                    writer.flush();
+                }
+            }
+
+            File secretsDirectory = new File(modDirectory, "/secrets");
+            if (secretsDirectory.exists()) {
+                JsonObject secretsObject = new JsonObject();
+                for (File f : Objects.requireNonNull(secretsDirectory.listFiles())) {
+                    JsonObject secretObject = (JsonObject) jsonParser.parse(new InputStreamReader(new FileInputStream(f)));
+                    secretsObject.add(f.getName().replaceAll("\\.json", ""), secretObject);
+                }
+                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(secretsOutput)))) {
+                    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+                    gson.toJson(secretsObject, writer);
+                    writer.flush();
+                }
+            }
+            JsonObject assetsVersionObject = new JsonObject();
+            assetsVersionObject.addProperty("version", ++version);
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(assetsVersionOutput)))) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+                gson.toJson(assetsVersionObject, writer);
+                writer.flush();
+            }
+            chatMessage("§aCreated output data in output folder");
+        } catch (Exception e) {
+            chatMessage("§cAn error has occurred. Check logs for more information");
+            e.printStackTrace();
+        }
+    }
+
     private void sendHelp() {
         chatMessage("");
         chatMessage("§5§lDungeonSecretFinder §7Help:");
         chatMessage("§6/dsf scan §7Scan dungeon");
         chatMessage("§6/dsf clear §7Clear previous scan");
+        chatMessage("§6/dsf preparedata §7Prepare data for github");
         chatMessage("§6/dsf relative | rel §7Prints relative location");
         chatMessage("   §e-clipboard §7Also copies to clipboard");
         chatMessage("   §e-nlb-clipboard §7Also copies to clipboard without linebreaks");
@@ -214,7 +321,6 @@ public class MainModCommand extends CommandBase {
         chatMessage("§6/dsf secrettypes | st §7Shows the available secret types");
         chatMessage("§6/dsf roomdesigner | rd §7Show room designer help");
     }
-
 
 
 }
