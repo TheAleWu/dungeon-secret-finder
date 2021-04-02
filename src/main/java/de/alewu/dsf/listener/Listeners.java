@@ -16,6 +16,7 @@ import de.alewu.dsf.util.RoomDisplayContext;
 import de.alewu.dsf.util.RoomDisplayContext.DisplayOption;
 import de.alewu.dsf.util.RuntimeContext;
 import de.alewu.dsf.util.ServerConnection;
+import de.alewu.dsf.web.RemoteDataUpdateResult;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -72,15 +73,20 @@ public class Listeners {
     @SubscribeEvent
     public void onClientTick(ClientTickEvent e) {
         if (e.type == Type.CLIENT && e.phase == Phase.START) {
-            if (RuntimeContext.getInstance().isDebugDisabled() && ServerConnection.isInvalid()) {
-                RuntimeContext runtimeContext = RuntimeContext.getInstance();
-                if (runtimeContext.getCurrentDungeonLayout() != null) {
-                    runtimeContext.setCurrentDungeonLayout(null);
+            RuntimeContext ctx = RuntimeContext.getInstance();
+            if (ctx.isDebugDisabled() && ServerConnection.isInvalid()) {
+                if (ctx.getCurrentDungeonLayout() != null) {
+                    ctx.setCurrentDungeonLayout(null);
                 }
                 RoomDisplayContext roomDisplayContext = RoomDisplayContext.getInstance();
                 if (roomDisplayContext != null) {
                     roomDisplayContext.purge();
                 }
+            }
+            RemoteDataUpdateResult updateResult = ctx.getRemoteDataUpdateResult();
+            if (ServerConnection.isOnHypixel() && ServerConnection.isOnSkyblock() && updateResult != null) {
+                chatMessage(updateResult.getMessage());
+                ctx.setRemoteDataUpdateResult(null);
             }
         }
     }
@@ -123,45 +129,6 @@ public class Listeners {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    private void displayMarkers(DungeonRoom room) {
-        RoomIdentification identification = room.getIdentification();
-        if (identification != null) {
-            identification.getMarkers().forEach(marker -> {
-                GlStateManager.pushMatrix();
-
-                RelativeLocation loc = marker.getLocation().rotate(room.getRotation());
-                BlockPos c = room.getCenterBlockPos();
-                drawBoundingBox(Triple.of(c.getX() + loc.getX(), c.getY() + loc.getY(), c.getZ() + loc.getZ()), DEBUG_MARKER_BORDER, Color.RED);
-
-                GlStateManager.resetColor();
-                GlStateManager.popMatrix();
-            });
-        }
-    }
-
-    private void drawSecret(DungeonRoom room, RoomSecret secret) {
-        GlStateManager.pushMatrix();
-
-        RelativeLocation loc = secret.getRelativeLocation().rotate(room.getRotation());
-        BlockPos c = room.getCenterBlockPos();
-        // Draw secret
-        drawBoundingBox(Triple.of(c.getX() + loc.getX(), c.getY() + loc.getY(), c.getZ() + loc.getZ()), secret.getBorderSize(), secret.getMarkerColor());
-
-        GlStateManager.resetColor();
-        GlStateManager.popMatrix();
-
-        // Draw steps of secret
-        secret.getSubordinateSecretChain().forEach(s -> {
-            GlStateManager.pushMatrix();
-            RelativeLocation l = s.getRelativeLocation().rotate(room.getRotation());
-            BlockPos center = room.getCenterBlockPos();
-            AxisAlignedBB border = /*new AxisAlignedBB(0.4, 0.4, 0.4, 0.6, 0.6, 0.6)*/ s.getBorderSize();
-            drawBoundingBox(Triple.of(center.getX() + l.getX(), center.getY() + l.getY(), center.getZ() + l.getZ()), border, s.getMarkerColor());
-            GlStateManager.resetColor();
-            GlStateManager.popMatrix();
-        });
     }
 
     @SubscribeEvent
@@ -213,6 +180,45 @@ public class Listeners {
             return;
         }
         printSecretInfo(fontRenderer, currentRoom);
+    }
+
+    private void displayMarkers(DungeonRoom room) {
+        RoomIdentification identification = room.getIdentification();
+        if (identification != null) {
+            identification.getMarkers().forEach(marker -> {
+                GlStateManager.pushMatrix();
+
+                RelativeLocation loc = marker.getLocation().rotate(room.getRotation());
+                BlockPos c = room.getCenterBlockPos();
+                drawBoundingBox(Triple.of(c.getX() + loc.getX(), c.getY() + loc.getY(), c.getZ() + loc.getZ()), DEBUG_MARKER_BORDER, Color.RED);
+
+                GlStateManager.resetColor();
+                GlStateManager.popMatrix();
+            });
+        }
+    }
+
+    private void drawSecret(DungeonRoom room, RoomSecret secret) {
+        GlStateManager.pushMatrix();
+
+        RelativeLocation loc = secret.getRelativeLocation().rotate(room.getRotation());
+        BlockPos c = room.getCenterBlockPos();
+        // Draw secret
+        drawBoundingBox(Triple.of(c.getX() + loc.getX(), c.getY() + loc.getY(), c.getZ() + loc.getZ()), secret.getBorderSize(), secret.getMarkerColor());
+
+        GlStateManager.resetColor();
+        GlStateManager.popMatrix();
+
+        // Draw steps of secret
+        secret.getSubordinateSecretChain().forEach(s -> {
+            GlStateManager.pushMatrix();
+            RelativeLocation l = s.getRelativeLocation().rotate(room.getRotation());
+            BlockPos center = room.getCenterBlockPos();
+            AxisAlignedBB border = /*new AxisAlignedBB(0.4, 0.4, 0.4, 0.6, 0.6, 0.6)*/ s.getBorderSize();
+            drawBoundingBox(Triple.of(center.getX() + l.getX(), center.getY() + l.getY(), center.getZ() + l.getZ()), border, s.getMarkerColor());
+            GlStateManager.resetColor();
+            GlStateManager.popMatrix();
+        });
     }
 
     private void printSecretInfo(FontRenderer fontRenderer, DungeonRoom currentRoom) {

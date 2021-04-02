@@ -3,7 +3,7 @@ package de.alewu.dsf.web;
 public class RemoteDataUpdateResult {
 
     private final Type type;
-    private String[] args;
+    private final String[] args;
 
     public RemoteDataUpdateResult(Type type, String... args) {
         this.type = type;

@@ -169,6 +169,7 @@ public class RemoteData {
                             ctx.setRemoteDataUpdateResult(new RemoteDataUpdateResult(Type.EXCEPTION_OCCURRED, "Write New Version"));
                             ex.printStackTrace();
                         }
+                        ctx.setRemoteDataUpdateResult(new RemoteDataUpdateResult(Type.SUCCESS));
                     } catch (JsonParseException e) {
                         ctx.setRemoteDataUpdateResult(new RemoteDataUpdateResult(Type.NOT_PROPERLY_FORMATTED, "Secrets"));
                         e.printStackTrace();

@@ -11,12 +11,12 @@ public class ServerConnection {
         // Util class
     }
 
-    private static boolean isOnHypixel() {
+    public static boolean isOnHypixel() {
         ServerData serverData = Minecraft.getMinecraft().getCurrentServerData();
         return serverData != null && serverData.serverIP.contains("hypixel.net");
     }
 
-    private static boolean isOnSkyblock() {
+    public static boolean isOnSkyblock() {
         if (Minecraft.getMinecraft().thePlayer == null) {
             return false;
         }
@@ -25,7 +25,7 @@ public class ServerConnection {
             && StringUtils.stripControlCodes(scoreboard.getObjectiveInDisplaySlot(1).getDisplayName()).contains("SKYBLOCK");
     }
 
-    private static boolean isInDungeons() {
+    public static boolean isInDungeons() {
         if (Minecraft.getMinecraft().thePlayer == null) {
             return false;
         }
