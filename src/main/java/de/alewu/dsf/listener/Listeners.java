@@ -72,7 +72,7 @@ public class Listeners {
     @SubscribeEvent
     public void onClientTick(ClientTickEvent e) {
         if (e.type == Type.CLIENT && e.phase == Phase.START) {
-            if (!RuntimeContext.getInstance().isDebugEnabled() && ServerConnection.isInvalid()) {
+            if (RuntimeContext.getInstance().isDebugDisabled() && ServerConnection.isInvalid()) {
                 RuntimeContext runtimeContext = RuntimeContext.getInstance();
                 if (runtimeContext.getCurrentDungeonLayout() != null) {
                     runtimeContext.setCurrentDungeonLayout(null);
@@ -90,7 +90,7 @@ public class Listeners {
         try {
             drawDebugMarker();
 
-            if (!RuntimeContext.getInstance().isDebugEnabled() && ServerConnection.isInvalid()) {
+            if (RuntimeContext.getInstance().isDebugDisabled() && ServerConnection.isInvalid()) {
                 return;
             }
             DungeonLayout layout = RuntimeContext.getInstance().getCurrentDungeonLayout();
@@ -166,7 +166,7 @@ public class Listeners {
 
     @SubscribeEvent
     public void onKeyInput(KeyInputEvent e) {
-        if (!RuntimeContext.getInstance().isDebugEnabled() && ServerConnection.isInvalid()) {
+        if (RuntimeContext.getInstance().isDebugDisabled() && ServerConnection.isInvalid()) {
             return;
         }
         RoomDisplayContext displayData = RoomDisplayContext.getInstance();
@@ -192,7 +192,7 @@ public class Listeners {
         if (e.type != ElementType.EXPERIENCE) {
             return;
         }
-        if (!RuntimeContext.getInstance().isDebugEnabled() && ServerConnection.isInvalid()) {
+        if (RuntimeContext.getInstance().isDebugDisabled() && ServerConnection.isInvalid()) {
             return;
         }
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;

@@ -1,6 +1,7 @@
 package de.alewu.dsf.util;
 
 import de.alewu.dsf.scanning.DungeonLayout;
+import de.alewu.dsf.web.RemoteDataUpdateResult;
 
 public class RuntimeContext {
 
@@ -9,6 +10,7 @@ public class RuntimeContext {
     private boolean debugEnabled;
     private DebugMarkerData markerData;
     private boolean debugDisplayingMarkers;
+    private RemoteDataUpdateResult remoteDataUpdateResult;
 
     private RuntimeContext() {
         this.debugEnabled = true;
@@ -22,8 +24,8 @@ public class RuntimeContext {
         return instance;
     }
 
-    public boolean isDebugEnabled() {
-        return debugEnabled;
+    public boolean isDebugDisabled() {
+        return !debugEnabled;
     }
 
     public void setDebugEnabled(boolean debugEnabled) {
@@ -52,5 +54,13 @@ public class RuntimeContext {
 
     public boolean isDebugDisplayingMarkers() {
         return debugDisplayingMarkers;
+    }
+
+    public RemoteDataUpdateResult getRemoteDataUpdateResult() {
+        return remoteDataUpdateResult;
+    }
+
+    public void setRemoteDataUpdateResult(RemoteDataUpdateResult remoteDataUpdateResult) {
+        this.remoteDataUpdateResult = remoteDataUpdateResult;
     }
 }

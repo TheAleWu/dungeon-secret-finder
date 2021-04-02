@@ -5,6 +5,7 @@ import de.alewu.dsf.listener.Listeners;
 import de.alewu.dsf.scanning.DungeonLayout;
 import de.alewu.dsf.util.KeyBindingUtil;
 import de.alewu.dsf.util.RuntimeContext;
+import de.alewu.dsf.web.RemoteData;
 import java.util.Timer;
 import java.util.TimerTask;
 import net.minecraft.client.Minecraft;
@@ -27,6 +28,8 @@ public class DungeonSecretFinder {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         KeyBindingUtil.register();
+
+        RemoteData.load();
     }
 
     @EventHandler
